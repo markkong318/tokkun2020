@@ -1,0 +1,43 @@
+{
+  "title": "tokkun2020",
+  "packageName": "org.cocos2d.demo",
+  "startScene": "35b0eda1-b2e1-4b53-845d-f848c533fc91",
+  "excludeScenes": [],
+  "includeSDKBox": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "webOrientation": "auto",
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "mergeStartScene": false,
+  "optimizeHotUpdate": false,
+  "md5Cache": true,
+  "encryptJs": true,
+  "xxteaKey": "a4790b76-7d6a-45",
+  "zipCompressJs": true,
+  "fb-instant-games": {},
+  "android": {
+    "packageName": "org.cocos2d.demo"
+  },
+  "ios": {
+    "packageName": "org.cocos2d.demo"
+  },
+  "mac": {
+    "packageName": "org.cocos2d.demo"
+  },
+  "win32": {},
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "packageName": "org.cocos2d.demo",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
+  "appBundle": false
+}
