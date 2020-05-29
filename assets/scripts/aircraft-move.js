@@ -15,7 +15,7 @@ cc.Class({
         this.interval = INTERVAL;
 
         this.sprite = this.node.getComponent(cc.Sprite);
-        this.sprite.spriteFrame = this.frames[Math.ceil(this.frames.length / 2)];
+        this.sprite.spriteFrame = this.frames[Math.floor(this.frames.length / 2)];
 
         this.counter = Math.ceil(this.frames.length / 2) * this.interval;
         this.target = this.counter;
@@ -32,7 +32,7 @@ cc.Class({
             this.counter--;
         }
 
-        this.sprite.spriteFrame = this.frames[Math.ceil(this.counter / this.interval)];
+        this.sprite.spriteFrame = this.frames[Math.floor(this.counter / this.interval)];
     },
 
     toLeft: function() {
@@ -45,6 +45,6 @@ cc.Class({
     },
 
     toCenter: function() {
-        this.target = Math.ceil(this.frames.length / 2) * this.interval;
+        this.target = Math.floor(this.frames.length / 2) * this.interval;
     }
 });
