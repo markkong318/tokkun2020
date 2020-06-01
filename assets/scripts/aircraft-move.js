@@ -5,6 +5,7 @@ cc.Class({
 
     properties: {
         frames: [cc.SpriteFrame],
+        collisionNodes: [cc.Node],
     },
 
     start: function () {
@@ -14,10 +15,20 @@ cc.Class({
 
         this.interval = INTERVAL;
 
-        this.sprite = this.node.getComponent(cc.Sprite);
-        this.sprite.spriteFrame = this.frames[Math.floor(this.frames.length / 2)];
+        this.colliders = [];
+        for (let i = 0; i < this.collisionNodes.length; i++) {
+            this.colliders.push(this.collisionNodes[i].getComponent(cc.PolygonCollider))
+        }
 
-        this.counter = Math.ceil(this.frames.length / 2) * this.interval;
+        const idx = Math.floor(this.frames.length / 2);
+
+        this.sprite = this.node.getComponent(cc.Sprite);
+        this.sprite.spriteFrame = this.frames[idx];
+
+        this.collider = this.node.getComponent(cc.PolygonCollider);
+        this.collider.points = this.colliders[idx].points;
+
+        this.counter = Math.ceil(idx) * this.interval;
         this.target = this.counter;
     },
 
@@ -32,7 +43,9 @@ cc.Class({
             this.counter--;
         }
 
-        this.sprite.spriteFrame = this.frames[Math.floor(this.counter / this.interval)];
+        const idx = Math.floor(this.counter / this.interval);
+        this.sprite.spriteFrame = this.frames[idx];
+        this.collider.points = this.colliders[idx].points;
     },
 
     toLeft: function() {
@@ -46,5 +59,9 @@ cc.Class({
 
     toCenter: function() {
         this.target = Math.floor(this.frames.length / 2) * this.interval;
+    },
+
+    onCollisionEnter: function (other, self) {
+        console.log("dead");
     }
 });

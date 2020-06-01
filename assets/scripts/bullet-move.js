@@ -1,5 +1,7 @@
-const VELOCITY = 1;
+const VELOCITY = 1.3;
 const DELAY = 10000;
+const TARGET_WIDTH_OFFSET = 100;
+const TARGET_HEIGHT_OFFSET = 100;
 
 cc.Class({
     extends: cc.Component,
@@ -7,7 +9,7 @@ cc.Class({
     properties: {
     },
 
-    start: function () {
+    onLoad: function () {
         this.velocity = VELOCITY;
 
         const delay = Math.random() * DELAY;
@@ -63,7 +65,10 @@ cc.Class({
     initDelta: function() {
         const aircraft = cc.find("Canvas/aircraft");
 
-        const start = cc.v2(this.node.x, this.node.y);
+        const targetX = this.node.x + (Math.floor(TARGET_WIDTH_OFFSET * Math.random())) - TARGET_WIDTH_OFFSET / 2;
+        const targetY = this.node.y + (Math.floor(TARGET_HEIGHT_OFFSET * Math.random())) - TARGET_HEIGHT_OFFSET / 2;
+
+        const start = cc.v2(targetX, targetY);
         const end = cc.v2(aircraft.x, aircraft.y);
 
         const vector = end.sub(start);

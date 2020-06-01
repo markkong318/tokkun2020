@@ -3,19 +3,18 @@ cc.Class({
 
     properties: {},
 
-    start: function () {
+    onLoad: function () {
         this.count = 200;
 
-        const canvasNode = cc.find("Canvas");
-        const bulletNode = cc.find("Canvas/bullet");
-        const scene = cc.director.getScene();
+        const canvas = cc.find("Canvas");
+        const bullet = cc.find("Canvas/bullet");
 
         this.bullets = [];
         for (let i = 0; i < this.count; i++) {
-            const bullet = cc.instantiate(bulletNode);
-            bullet.parent = canvasNode;
+            const node = cc.instantiate(bullet);
+            node.parent = canvas;
 
-            this.bullets.push(bullet);
+            this.bullets.push(node);
         }
     },
 
