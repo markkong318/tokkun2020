@@ -1,0 +1,7 @@
+const EVENT_DEAD = "EVENT_DEAD";
+const EVENT_BULLET_SHOOT = "EVENT_SHOOT";
+
+module.exports = {
+    EVENT_DEAD,
+    EVENT_BULLET_SHOOT,
+};

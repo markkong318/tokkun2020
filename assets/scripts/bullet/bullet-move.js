@@ -1,3 +1,7 @@
+const {
+    EVENT_BULLET_SHOOT,
+} = require("../event")
+
 const VELOCITY = 1.3;
 const DELAY = 10000;
 const TARGET_WIDTH_OFFSET = 100;
@@ -60,6 +64,8 @@ cc.Class({
 
         this.node.x = point.x - size.width / 2;
         this.node.y = point.y - size.height / 2;
+
+        GlobalEvent.emit(EVENT_BULLET_SHOOT);
     },
 
     initDelta: function() {
@@ -76,6 +82,5 @@ cc.Class({
 
         this.dx = vector.x / distance;
         this.dy = vector.y / distance;
-    }
-
+    },
 });

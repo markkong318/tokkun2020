@@ -1,6 +1,6 @@
 {
   "ver": "2.3.4",
-  "uuid": "0fe099c2-d592-4203-86dd-8071ec5e9184",
+  "uuid": "6ada734a-22a3-4cc8-add1-4e277cbe1cb8",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,18 +11,18 @@
   "height": 16,
   "platformSettings": {},
   "subMetas": {
-    "aircraft": {
+    "aircraft-1": {
       "ver": "1.0.4",
-      "uuid": "8a47ca3e-172b-4cf4-b928-3698af0ecc98",
-      "rawTextureUuid": "0fe099c2-d592-4203-86dd-8071ec5e9184",
+      "uuid": "627cc631-6b9f-4070-bf1c-53f91acd005f",
+      "rawTextureUuid": "6ada734a-22a3-4cc8-add1-4e277cbe1cb8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
-      "offsetX": 0,
+      "offsetX": 0.5,
       "offsetY": 0.5,
-      "trimX": 1,
+      "trimX": 2,
       "trimY": 1,
-      "width": 14,
+      "width": 13,
       "height": 13,
       "rawWidth": 16,
       "rawHeight": 16,

@@ -1,3 +1,5 @@
+const { EVENT_DEAD } = require("../event");
+
 const INTERVAL = 7;
 
 cc.Class({
@@ -62,6 +64,8 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        console.log("dead");
+        cc.director.pause();
+        GlobalEvent.emit(EVENT_DEAD);
+        console.log("emit")
     }
 });
