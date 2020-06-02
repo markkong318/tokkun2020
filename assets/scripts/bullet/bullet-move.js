@@ -2,8 +2,8 @@ const {
     EVENT_BULLET_SHOOT,
 } = require("../event")
 
-const VELOCITY = 1.3;
-const DELAY = 10000;
+const VELOCITY = 2;
+const DELAY = 10;
 const TARGET_WIDTH_OFFSET = 100;
 const TARGET_HEIGHT_OFFSET = 100;
 
@@ -13,15 +13,15 @@ cc.Class({
     properties: {
     },
 
-    onLoad: function () {
+    start: function () {
         this.velocity = VELOCITY;
 
         const delay = Math.random() * DELAY;
 
-        setTimeout(() => {
+        this.scheduleOnce(() => {
             this.initPosition();
             this.initDelta();
-        }, delay);
+        }, delay)
     },
 
     update: function() {

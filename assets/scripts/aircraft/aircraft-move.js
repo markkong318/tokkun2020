@@ -66,6 +66,5 @@ cc.Class({
     onCollisionEnter: function (other, self) {
         cc.director.pause();
         GlobalEvent.emit(EVENT_DEAD);
-        console.log("emit")
     }
 });

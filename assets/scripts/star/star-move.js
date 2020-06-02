@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {},
 
-    onLoad: function () {
+    start: function () {
         const size = cc.view.getDesignResolutionSize();
 
         const x = Math.floor(size.width * Math.random()) - size.width / 2;

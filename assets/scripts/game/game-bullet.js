@@ -20,13 +20,4 @@ cc.Class({
             this.bullets.push(node);
         }
     },
-
-    stop: function() {
-        for (let i = 0; i < this.bullets.length; i++) {
-            const node = this.bullets[i];
-
-            const bulletMove = node.getComponent("bullet-move");
-            bulletMove.stop();
-        }
-    }
 });
