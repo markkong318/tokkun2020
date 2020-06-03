@@ -1,6 +1,6 @@
 const store = require("../store");
 const {
-    EVENT_DEAD,
+    EVENT_PLAYER_DEAD,
     EVENT_BULLET_SHOOT,
 } = require("../event");
 
@@ -14,13 +14,13 @@ cc.Class({
         
         window.GlobalEvent = new cc.EventTarget();
 
-        GlobalEvent.on(EVENT_DEAD, () => {
-            this.endTime = new Date();
+        GlobalEvent.on(EVENT_PLAYER_DEAD, () => {
+            this.endAliveTime = new Date();
 
             const node = cc.find("Canvas/dead");
 
             const bulletCount = this.bulletCount;
-            const aliveSecond = (this.endTime - this.startTime) / 1000;
+            const aliveSecond = (this.endAliveTime - this.startAliveTime) / 1000;
 
             const deadText = node.getComponent("dead-text");
             deadText.setBulletCount(bulletCount);
@@ -32,7 +32,7 @@ cc.Class({
             node.active = true;
         });
 
-        this.startTime = new Date();
+        this.startAliveTime = new Date();
         this.bulletCount = 0;
 
         GlobalEvent.on(EVENT_BULLET_SHOOT, () => {

@@ -1,4 +1,6 @@
-const { EVENT_DEAD } = require("event");
+const {
+    EVENT_PLAYER_DEAD,
+} = require("../event");
 
 cc.Class({
     extends: cc.Component,
@@ -38,7 +40,7 @@ cc.Class({
             aircraftMove.toCenter();
         }, this);
 
-        GlobalEvent.on(EVENT_DEAD, function(){
+        GlobalEvent.on(EVENT_PLAYER_DEAD, function(){
             this.playable = false;
         }, this)
     },

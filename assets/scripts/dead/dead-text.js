@@ -3,12 +3,18 @@ cc.Class({
 
     properties: {
         aliveSecond: cc.Node,
+        moveSecond:cc.Node,
         bulletCount: cc.Node,
     },
 
     setAliveSecond: function (second) {
         const label = this.aliveSecond.getComponent(cc.Label);
-        label.string = `生存時間　${second}秒`;
+        label.string = `生存時間　${second.toFixed(3)}秒`;
+    },
+
+    setMoveSecond: function(second) {
+        const label = this.moveSecond.getComponent(cc.Label);
+        label.string = `移動時間　${second.toFixed(3)}秒`;
     },
 
     setBulletCount: function (count) {

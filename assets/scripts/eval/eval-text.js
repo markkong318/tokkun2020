@@ -26,8 +26,6 @@ cc.Class({
             }
         }
 
-        console.log(title);
-
         label1.string = title.text[0];
         label2.string = title.text[1];
         label3.string = title.text[2];

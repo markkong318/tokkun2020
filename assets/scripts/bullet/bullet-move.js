@@ -1,6 +1,6 @@
 const {
     EVENT_BULLET_SHOOT,
-} = require("../event")
+} = require("../event");
 
 const VELOCITY = 2;
 const DELAY = 10;

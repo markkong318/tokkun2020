@@ -1,4 +1,6 @@
-const { EVENT_DEAD } = require("../event");
+const {
+    EVENT_PLAYER_DEAD,
+} = require("../event");
 
 const INTERVAL = 7;
 
@@ -32,9 +34,11 @@ cc.Class({
 
         this.counter = Math.ceil(idx) * this.interval;
         this.target = this.counter;
+
+        this.toCenter();
     },
 
-    update: function () {
+    update: function (dt) {
         if (this.counter == this.target) {
             return;
         }
@@ -56,7 +60,6 @@ cc.Class({
 
     toRight: function() {
         this.target = (this.frames.length - 1) * this.interval;
-
     },
 
     toCenter: function() {
@@ -65,6 +68,6 @@ cc.Class({
 
     onCollisionEnter: function (other, self) {
         cc.director.pause();
-        GlobalEvent.emit(EVENT_DEAD);
+        GlobalEvent.emit(EVENT_PLAYER_DEAD);
     }
 });
