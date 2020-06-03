@@ -1,6 +1,6 @@
 const store = require("../store");
 const {
-    EVENT_PLAYER_DEAD,
+    EVENT_AIRCRAFT_DEAD,
     EVENT_BULLET_SHOOT,
 } = require("../event");
 
@@ -14,7 +14,7 @@ cc.Class({
         
         window.GlobalEvent = new cc.EventTarget();
 
-        GlobalEvent.on(EVENT_PLAYER_DEAD, () => {
+        GlobalEvent.on(EVENT_AIRCRAFT_DEAD, () => {
             this.endAliveTime = new Date();
 
             const node = cc.find("Canvas/dead");

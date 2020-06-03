@@ -1,12 +1,12 @@
 const {
     EVENT_BULLET_SHOOT,
-} = require("../event");
+} = require("../../event");
 
-const VELOCITY = 2;
-const INIT_DELAY = 0;
-const DELAY = 10;
-const TARGET_WIDTH_OFFSET = 100;
-const TARGET_HEIGHT_OFFSET = 100;
+const VELOCITY = 4;
+const INIT_DELAY = 3;
+const DELAY = 0;
+const TARGET_WIDTH_OFFSET = 10;
+const TARGET_HEIGHT_OFFSET = 10;
 
 cc.Class({
     extends: cc.Component,
@@ -15,6 +15,7 @@ cc.Class({
     },
 
     start: function () {
+        this.alive = false;
         this.velocity = VELOCITY;
 
         const delay = Math.random() * DELAY + INIT_DELAY;
@@ -22,10 +23,15 @@ cc.Class({
         this.scheduleOnce(() => {
             this.initPosition();
             this.initDelta();
+            this.alive = true;
         }, delay)
     },
 
     update: function() {
+        // if (!this.alive) {
+        //     return;
+        // }
+
         const size = cc.view.getDesignResolutionSize();
 
         this.node.x += this.dx * this.velocity;
@@ -36,8 +42,8 @@ cc.Class({
             this.node.y > size.height / 2 ||
             this.node.y < - size.height / 2
         ) {
-            this.initPosition();
-            this.initDelta();
+            // this.alive = false;
+            this.node.destroy();
         }
     },
 

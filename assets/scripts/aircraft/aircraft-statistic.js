@@ -1,5 +1,5 @@
 const {
-    EVENT_PLAYER_DEAD,
+    EVENT_AIRCRAFT_DEAD,
 } = require("../event");
 
 cc.Class({
@@ -15,7 +15,7 @@ cc.Class({
 
         this.moveSecond = 0;
 
-        GlobalEvent.on(EVENT_PLAYER_DEAD, () => {
+        GlobalEvent.on(EVENT_AIRCRAFT_DEAD, () => {
             const node = cc.find("Canvas/dead");
 
             const deadText = node.getComponent("dead-text");

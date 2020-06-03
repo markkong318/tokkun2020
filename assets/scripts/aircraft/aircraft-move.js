@@ -1,5 +1,5 @@
 const {
-    EVENT_PLAYER_DEAD,
+    EVENT_AIRCRAFT_DEAD,
 } = require("../event");
 
 const INTERVAL = 7;
@@ -68,6 +68,6 @@ cc.Class({
 
     onCollisionEnter: function (other, self) {
         cc.director.pause();
-        GlobalEvent.emit(EVENT_PLAYER_DEAD);
+        GlobalEvent.emit(EVENT_AIRCRAFT_DEAD);
     }
 });

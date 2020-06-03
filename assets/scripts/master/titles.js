@@ -1,4 +1,4 @@
-module.exports =[
+module.exports = [
     {
         time: 0.5,
         text: [

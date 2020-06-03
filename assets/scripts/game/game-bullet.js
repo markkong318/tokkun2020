@@ -3,11 +3,10 @@ cc.Class({
 
     properties: {
         bullet: cc.Node,
-        fastBullet: cc.Node,
     },
 
     onLoad: function () {
-        this.count = 200;
+        this.count = 0;
 
         const canvas = cc.find("Canvas");
 
