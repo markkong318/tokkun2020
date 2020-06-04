@@ -6,6 +6,7 @@ cc.Class({
     properties: {
         frames: [cc.SpriteFrame],
         collision: cc.Node,
+        great: cc.Node,
     },
 
     start: function () {
@@ -22,6 +23,9 @@ cc.Class({
 
         this.aircraftCollision = this.collision.getComponent("aircraft-collision");
         this.aircraftCollision.setIdx(idx);
+
+        this.aircraftGreat = this.great.getComponent("aircraft-great");
+        this.aircraftGreat.setIdx(idx);
 
         this.counter = Math.ceil(idx) * this.interval;
         this.target = this.counter;
@@ -44,6 +48,7 @@ cc.Class({
         this.sprite.spriteFrame = this.frames[idx];
 
         this.aircraftCollision.setIdx(idx);
+        this.aircraftGreat.setIdx(idx);
     },
 
     toLeft: function() {

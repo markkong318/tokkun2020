@@ -5,6 +5,7 @@ cc.Class({
         aliveSecond: cc.Node,
         moveSecond:cc.Node,
         bulletCount: cc.Node,
+        greatRate: cc.Node,
     },
 
     setAliveSecond: function (second) {
@@ -21,4 +22,9 @@ cc.Class({
         const label = this.bulletCount.getComponent(cc.Label);
         label.string = `弾数　${count}発`;
     },
+
+    setGreatRate: function (rate) {
+        const label = this.greatRate.getComponent(cc.Label);
+        label.string = `絶妙率　${rate.toFixed(2)}%`;
+    }
 });

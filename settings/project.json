@@ -2,7 +2,8 @@
   "group-list": [
     "default",
     "aircraft",
-    "bullet"
+    "bullet",
+    "great"
   ],
   "collision-matrix": [
     [
@@ -14,6 +15,13 @@
       true
     ],
     [
+      false,
+      true,
+      false,
+      true
+    ],
+    [
+      false,
       false,
       true,
       false
@@ -45,5 +53,6 @@
       "enable": false
     }
   },
-  "migrate-history": []
+  "migrate-history": [],
+  "start-scene": "current"
 }

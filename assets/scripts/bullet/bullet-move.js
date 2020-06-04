@@ -1,7 +1,3 @@
-const {
-    EVENT_BULLET_SHOOT,
-} = require("../event");
-
 const VELOCITY = 2;
 const INIT_DELAY = 0;
 const DELAY = 10;
@@ -66,7 +62,8 @@ cc.Class({
         this.node.x = point.x - size.width / 2;
         this.node.y = point.y - size.height / 2;
 
-        GlobalEvent.emit(EVENT_BULLET_SHOOT);
+
+        GlobalEvent.emit(GlobalEvent.EVENT_BULLET_SHOOT);
     },
 
     initDelta: function() {

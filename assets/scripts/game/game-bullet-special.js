@@ -1,7 +1,4 @@
 const bulletRates = require("../master/bulletRates");
-const {
-    EVENT_UPDATE_PLAY_TIP
-} = require("../event");
 
 cc.Class({
     extends: cc.Component,
@@ -53,7 +50,7 @@ cc.Class({
     triggerFast: function() {
         const canvas = cc.find("Canvas");
 
-        GlobalEvent.emit(EVENT_UPDATE_PLAY_TIP, {text: "精密射撃"});
+        GlobalEvent.emit(GlobalEvent.EVENT_BULLET_SPECIAL, {text: "精密射撃"});
 
         for (let i = 0; i < 5; i++) {
             this.scheduleOnce(() => {

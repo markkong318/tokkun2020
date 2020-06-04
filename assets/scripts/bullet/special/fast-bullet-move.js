@@ -1,7 +1,3 @@
-const {
-    EVENT_BULLET_SHOOT,
-} = require("../../event");
-
 const VELOCITY = 4;
 const INIT_DELAY = 3;
 const DELAY = 0;
@@ -28,9 +24,7 @@ cc.Class({
     },
 
     update: function() {
-        // if (!this.alive) {
-        //     return;
-        // }
+
 
         const size = cc.view.getDesignResolutionSize();
 
@@ -42,7 +36,6 @@ cc.Class({
             this.node.y > size.height / 2 ||
             this.node.y < - size.height / 2
         ) {
-            // this.alive = false;
             this.node.destroy();
         }
     },
@@ -72,7 +65,7 @@ cc.Class({
         this.node.x = point.x - size.width / 2;
         this.node.y = point.y - size.height / 2;
 
-        GlobalEvent.emit(EVENT_BULLET_SHOOT);
+        GlobalEvent.emit(GlobalEvent.EVENT_BULLET_SHOOT);
     },
 
     initDelta: function() {

@@ -1,9 +1,3 @@
-const store = require("../store");
-const {
-    EVENT_AIRCRAFT_DEAD,
-    EVENT_BULLET_SHOOT,
-} = require("../event");
-
 cc.Class({
     extends: cc.Component,
 
@@ -13,30 +7,9 @@ cc.Class({
         cc.director.resume();
         
         window.GlobalEvent = new cc.EventTarget();
-
-        GlobalEvent.on(EVENT_AIRCRAFT_DEAD, () => {
-            this.endAliveTime = new Date();
-
-            const node = cc.find("Canvas/dead");
-
-            const bulletCount = this.bulletCount;
-            const aliveSecond = (this.endAliveTime - this.startAliveTime) / 1000;
-
-            const deadText = node.getComponent("dead-text");
-            deadText.setBulletCount(bulletCount);
-            deadText.setAliveSecond(aliveSecond);
-
-            store.bulletCount = bulletCount;
-            store.aliveSecond = aliveSecond;
-
-            node.active = true;
-        });
-
-        this.startAliveTime = new Date();
-        this.bulletCount = 0;
-
-        GlobalEvent.on(EVENT_BULLET_SHOOT, () => {
-            this.bulletCount++;
-        });
+        GlobalEvent.EVENT_AIRCRAFT_DEAD = "EVENT_AIRCRAFT_DEAD";
+        GlobalEvent.EVENT_AIRCRAFT_GREAT = "EVENT_AIRCRAFT_GREAT";
+        GlobalEvent.EVENT_BULLET_SHOOT = "EVENT_BULLET_SHOOT";
+        GlobalEvent.EVENT_BULLET_SPECIAL = "EVENT_BULLET_SPECIAL";
     }
 });
