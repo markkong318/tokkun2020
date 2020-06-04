@@ -1,7 +1,3 @@
-const {
-    EVENT_AIRCRAFT_DEAD,
-} = require("../event");
-
 const INTERVAL = 7;
 
 cc.Class({
@@ -9,7 +5,7 @@ cc.Class({
 
     properties: {
         frames: [cc.SpriteFrame],
-        collisionNodes: [cc.Node],
+        collision: cc.Node,
     },
 
     start: function () {
@@ -19,18 +15,13 @@ cc.Class({
 
         this.interval = INTERVAL;
 
-        this.colliders = [];
-        for (let i = 0; i < this.collisionNodes.length; i++) {
-            this.colliders.push(this.collisionNodes[i].getComponent(cc.PolygonCollider))
-        }
-
         const idx = Math.floor(this.frames.length / 2);
 
         this.sprite = this.node.getComponent(cc.Sprite);
         this.sprite.spriteFrame = this.frames[idx];
 
-        this.collider = this.node.getComponent(cc.PolygonCollider);
-        this.collider.points = this.colliders[idx].points;
+        this.aircraftCollision = this.collision.getComponent("aircraft-collision");
+        this.aircraftCollision.setIdx(idx);
 
         this.counter = Math.ceil(idx) * this.interval;
         this.target = this.counter;
@@ -51,7 +42,8 @@ cc.Class({
 
         const idx = Math.floor(this.counter / this.interval);
         this.sprite.spriteFrame = this.frames[idx];
-        this.collider.points = this.colliders[idx].points;
+
+        this.aircraftCollision.setIdx(idx);
     },
 
     toLeft: function() {
@@ -66,8 +58,4 @@ cc.Class({
         this.target = Math.floor(this.frames.length / 2) * this.interval;
     },
 
-    onCollisionEnter: function (other, self) {
-        cc.director.pause();
-        GlobalEvent.emit(EVENT_AIRCRAFT_DEAD);
-    }
 });
