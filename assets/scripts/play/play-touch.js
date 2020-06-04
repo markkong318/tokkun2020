@@ -20,6 +20,26 @@ cc.Class({
             this.aircraft.x += delta.x;
             this.aircraft.y += delta.y;
 
+            const size = cc.view.getDesignResolutionSize();
+
+            if (this.aircraft.x < -size.width / 2) {
+                this.aircraft.x = -size.width / 2;
+            }
+
+            if (this.aircraft.x > size.width / 2) {
+                this.aircraft.x = size.width / 2;
+            }
+
+            if (this.aircraft.y < -size.height / 2) {
+                this.aircraft.y = -size.height / 2;
+            }
+
+            if (this.aircraft.y > size.height / 2) {
+                this.aircraft.y = size.height / 2;
+            }
+
+            console.log(this.aircraft.x + " , " + this.aircraft.y);
+
             if (delta.x > 0) {
                 aircraftMove.toRight();
             } else if (delta.x < 0) {
