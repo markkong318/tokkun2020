@@ -1,7 +1,11 @@
 module.exports = [
     {
         bulletId: "fast",
-        rate: 10,
+        rate: 0,
+    },
+    {
+        bulletId: "trace",
+        rate: 90,
     }
 
 ];

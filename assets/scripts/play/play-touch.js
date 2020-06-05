@@ -6,12 +6,12 @@ cc.Class({
     },
 
     start: function () {
-        this.playable = true;
+        // this.playable = true;
 
         this.node.on(cc.Node.EventType.TOUCH_MOVE, function(e)  {
-            if (!this.playable) {
-                return;
-            }
+            // if (!this.playable) {
+            //     return;
+            // }
 
             const aircraftMove = this.aircraft.getComponent("aircraft-move");
 
@@ -38,8 +38,6 @@ cc.Class({
                 this.aircraft.y = size.height / 2;
             }
 
-            console.log(this.aircraft.x + " , " + this.aircraft.y);
-
             if (delta.x > 0) {
                 aircraftMove.toRight();
             } else if (delta.x < 0) {
@@ -48,17 +46,17 @@ cc.Class({
         }, this);
 
         this.node.on(cc.Node.EventType.TOUCH_END, function(e)  {
-            if (!this.playable) {
-                return;
-            }
+            // if (!this.playable) {
+            //     return;
+            // }
 
             const aircraftMove = this.aircraft.getComponent("aircraft-move");
             aircraftMove.toCenter();
         }, this);
 
         GlobalEvent.on(GlobalEvent.EVENT_AIRCRAFT_DEAD, () => {
-            this.playable = false;
-        }, this)
+            this.node.active = false;
+        })
     },
 
 });

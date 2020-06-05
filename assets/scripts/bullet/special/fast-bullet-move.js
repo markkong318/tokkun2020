@@ -71,11 +71,11 @@ cc.Class({
     initDelta: function() {
         const aircraft = cc.find("Canvas/aircraft");
 
-        const targetX = this.node.x + (Math.floor(TARGET_WIDTH_OFFSET * Math.random())) - TARGET_WIDTH_OFFSET / 2;
-        const targetY = this.node.y + (Math.floor(TARGET_HEIGHT_OFFSET * Math.random())) - TARGET_HEIGHT_OFFSET / 2;
+        const targetX = aircraft.x + (Math.floor(TARGET_WIDTH_OFFSET * Math.random())) - TARGET_WIDTH_OFFSET / 2;
+        const targetY = aircraft.y + (Math.floor(TARGET_HEIGHT_OFFSET * Math.random())) - TARGET_HEIGHT_OFFSET / 2;
 
-        const start = cc.v2(targetX, targetY);
-        const end = cc.v2(aircraft.x, aircraft.y);
+        const start = cc.v2(this.node.x, this.node.y);
+        const end = cc.v2(targetX, targetY);
 
         const vector = end.sub(start);
         const distance = vector.mag();

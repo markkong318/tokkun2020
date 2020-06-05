@@ -1,8 +1,6 @@
 const VELOCITY = 2;
 const INIT_DELAY = 0;
-const DELAY = 10;
-const TARGET_WIDTH_OFFSET = 100;
-const TARGET_HEIGHT_OFFSET = 100;
+const DELAY = 0;
 
 cc.Class({
     extends: cc.Component,
@@ -17,23 +15,29 @@ cc.Class({
 
         this.scheduleOnce(() => {
             this.initPosition();
-            this.initDelta();
-        }, delay)
+
+            this.initP0();
+            this.initP1();
+            this.initP2();
+
+            this.initDt();
+        }, delay);
     },
 
     update: function() {
-        const size = cc.view.getDesignResolutionSize();
+        this.next();
 
-        this.node.x += this.dx * this.velocity;
-        this.node.y += this.dy * this.velocity;
+        this.node.x = this.nextX;
+        this.node.y = this.nextY;
+
+        const size = cc.view.getDesignResolutionSize();
 
         if (this.node.x > size.width / 2 ||
             this.node.x < -size.width / 2 ||
             this.node.y > size.height / 2 ||
             this.node.y < - size.height / 2
         ) {
-            this.initPosition();
-            this.initDelta();
+            this.node.destroy();
         }
     },
 
@@ -62,23 +66,42 @@ cc.Class({
         this.node.x = point.x - size.width / 2;
         this.node.y = point.y - size.height / 2;
 
-
         GlobalEvent.emit(GlobalEvent.EVENT_BULLET_SHOOT);
     },
 
-    initDelta: function() {
+    initP0: function() {
+        this.p0 = cc.v2(this.node.x, this.node.y);
+    },
+
+    initP1: function() {
         const aircraft = cc.find("Canvas/aircraft");
+        this.p1 = cc.v2(aircraft.x, aircraft.y);
+    },
 
-        const targetX = this.node.x + (Math.floor(TARGET_WIDTH_OFFSET * Math.random())) - TARGET_WIDTH_OFFSET / 2;
-        const targetY = this.node.y + (Math.floor(TARGET_HEIGHT_OFFSET * Math.random())) - TARGET_HEIGHT_OFFSET / 2;
+    initP2: function(){
+        const size = cc.view.getDesignResolutionSize();
+        this.p2 = cc.v2(Math.floor(Math.random() * (size.width + 1)), Math.floor(Math.random() * (size.height + 1)));
+    },
 
-        const start = cc.v2(targetX, targetY);
-        const end = cc.v2(aircraft.x, aircraft.y);
+    initDt: function() {
+        const start = this.p0;
+        const middle = this.p1;
+        const end = this.p2;
 
-        const vector = end.sub(start);
-        const distance = vector.mag();
+        const distance = middle.sub(start).mag() + end.sub(middle).mag();
 
-        this.dx = vector.x / distance;
-        this.dy = vector.y / distance;
+        this.dt = 1 / distance * VELOCITY;
+        this.t = 0;
+    },
+
+    next: function() {
+        if (!this.dt || !this.p0 || !this.p1 || !this.p2) {
+            return;
+        }
+
+        this.t += this.dt;
+
+        this.nextX = Math.pow((1 - this.t), 2) * this.p0.x + 2 * (1 - this.t) * this.t * this.p1.x + Math.pow(this.t, 2) * this.p2.x;
+        this.nextY = Math.pow((1 - this.t), 2) * this.p0.y + 2 * (1 - this.t) * this.t *  this.p1.y + Math.pow(this.t, 2) * this.p2.y;
     },
 });

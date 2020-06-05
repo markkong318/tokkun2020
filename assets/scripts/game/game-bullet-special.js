@@ -5,6 +5,7 @@ cc.Class({
 
     properties: {
         fastBullet: cc.Node,
+        traceBullet: cc.Node,
     },
 
     onLoad: function () {
@@ -41,6 +42,9 @@ cc.Class({
                 case "fast":
                     this.triggerFast();
                     break;
+                case "trace":
+                    this.triggerTrace();
+                    break;
             }
 
             cooldown = 10;
@@ -58,6 +62,20 @@ cc.Class({
                 node.active = true;
                 node.parent = canvas;
             }, 0.3 * i);
+        }
+    },
+
+    triggerTrace: function() {
+        const canvas = cc.find("Canvas");
+
+        GlobalEvent.emit(GlobalEvent.EVENT_BULLET_SPECIAL, {text: "誘導弾"});
+
+        for (let i = 0; i < 5; i++) {
+            this.scheduleOnce(() => {
+                const node = cc.instantiate(this.traceBullet);
+                node.active = true;
+                node.parent = canvas;
+            }, 0.1 * i);
         }
     }
 });

@@ -14,7 +14,7 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        cc.director.pause();
         GlobalEvent.emit(GlobalEvent.EVENT_AIRCRAFT_DEAD);
+        cc.director.pause();
     }
 });

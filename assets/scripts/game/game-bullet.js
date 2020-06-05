@@ -6,7 +6,7 @@ cc.Class({
     },
 
     onLoad: function () {
-        this.count = 200;
+        this.count = 0;
 
         const canvas = cc.find("Canvas");
 
