@@ -1,4 +1,4 @@
-const VELOCITY = 2;
+const VELOCITY = 5;
 const INIT_DELAY = 0;
 const DELAY = 0;
 
@@ -93,7 +93,7 @@ cc.Class({
         this.dt = 1 / distance * VELOCITY;
         this.t = 0;
     },
-
+    
     next: function() {
         if (!this.dt || !this.p0 || !this.p1 || !this.p2) {
             return;

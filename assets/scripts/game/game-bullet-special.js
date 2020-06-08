@@ -6,6 +6,7 @@ cc.Class({
     properties: {
         fastBullet: cc.Node,
         traceBullet: cc.Node,
+        fastTraceBullet: cc.Node,
     },
 
     onLoad: function () {
@@ -14,13 +15,10 @@ cc.Class({
         this.schedule(() => {
             if (cooldown > 0) {
                 cooldown--;
-                console.log("cool down")
                 return;
             }
 
             let ans = Math.random() * 100;
-
-            console.log(ans);
 
             let bulletRate;
             for (let i = 0 ; i < bulletRates.length; i++) {
@@ -38,14 +36,14 @@ cc.Class({
                 return;
             }
 
-            switch (bulletRate.bulletId) {
-                case "fast":
-                    this.triggerFast();
-                    break;
-                case "trace":
-                    this.triggerTrace();
-                    break;
-            }
+            const funcName = "trigger" + bulletRate.bulletId.toLowerCase().replace(/(^\w|[-_][a-z])/g, group =>
+                group
+                    .toUpperCase()
+                    .replace('-', '')
+                    .replace('_', '')
+            );
+
+            this[funcName]();
 
             cooldown = 10;
         }, 1);
@@ -73,6 +71,20 @@ cc.Class({
         for (let i = 0; i < 5; i++) {
             this.scheduleOnce(() => {
                 const node = cc.instantiate(this.traceBullet);
+                node.active = true;
+                node.parent = canvas;
+            }, 0.1 * i);
+        }
+    },
+
+    triggerFastTrace: function() {
+        const canvas = cc.find("Canvas");
+
+        GlobalEvent.emit(GlobalEvent.EVENT_BULLET_SPECIAL, {text: "加速誘導弾"});
+
+        for (let i = 0; i < 5; i++) {
+            this.scheduleOnce(() => {
+                const node = cc.instantiate(this.fastTraceBullet);
                 node.active = true;
                 node.parent = canvas;
             }, 0.1 * i);
