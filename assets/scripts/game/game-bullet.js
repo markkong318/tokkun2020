@@ -8,7 +8,7 @@ cc.Class({
     onLoad: function () {
         this.count = 200;
 
-        const canvas = cc.find("Canvas");
+        const canvas = cc.find("Canvas/bullet");
 
         this.bullets = [];
         for (let i = 0; i < this.count; i++) {
